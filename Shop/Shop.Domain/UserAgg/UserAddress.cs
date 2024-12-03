@@ -5,7 +5,16 @@ namespace Shop.Domain.UserAgg;
 
 public class UserAddress : BaseEntity
 {
-    public UserAddress(long userId, string province, string city, string postalAddress, string postalCode, string phoneNumber, string name, string family, string nationalCode)
+    public UserAddress(
+        long userId,
+        string province,
+        string city,
+        string postalAddress,
+        string postalCode,
+        string phoneNumber,
+        string name,
+        string family,
+        string nationalCode)
     {
         Guard(
         province,
@@ -75,7 +84,6 @@ public class UserAddress : BaseEntity
         NationalCode = nationalCode;
     }   
     public void Guard(
-           
             string province,
             string city,
             string postalAddress,

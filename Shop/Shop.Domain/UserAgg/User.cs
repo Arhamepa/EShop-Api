@@ -81,6 +81,7 @@ public class User:AggregateRoot
 
     public void ChargeWallet(Wallet wallet)
     {
+        wallet.UserId= Id;
         Wallets.Add(wallet);
     }
 
