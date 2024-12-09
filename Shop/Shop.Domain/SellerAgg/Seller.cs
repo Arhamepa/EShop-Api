@@ -30,14 +30,12 @@ public class Seller:AggregateRoot
         Status = status;
         LatestUpDateTime=DateTime.Now;
     }
-
     public void Edit(string shopName, string nationalCode)
     {
         Guard(shopName,nationalCode);
         ShopName = shopName;
         NationalCode = nationalCode;
     }
-
     public void Guard(string shopName, string nationalCode)
     {
         NullOrEmptyDomainDataException.CheckString(shopName, nameof(shopName));

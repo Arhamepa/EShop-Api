@@ -1,6 +1,6 @@
 ﻿namespace Common.Domain.Exceptions;
 
-public class SlugIsDuplicateException : BaseDomainException
+public class SlugIsDuplicateException:BaseDomainException
 {
     public SlugIsDuplicateException() : base("slug تکراری است")
     {

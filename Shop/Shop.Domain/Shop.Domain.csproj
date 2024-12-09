@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <Folder Include="OrderAgg\Events\" />
+    <Folder Include="ProductAgg\Service\" />
     <Folder Include="UserAgg\Enums\" />
     <Folder Include="UserAgg\Services\" />
   </ItemGroup>
