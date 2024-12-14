@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Categories\Create\" />
+    <Folder Include="Categories\Edit\" />
+    <Folder Include="Categories\AddChildren\" />
+    <Folder Include="Comments\Create\" />
+    <Folder Include="Comments\Edit\" />
+    <Folder Include="Comments\ChangeStatus\" />
+    <Folder Include="Orders\AddItem\" />
+    <Folder Include="Orders\ChangeCount\" />
+    <Folder Include="Orders\RemoveItem\" />
+    <Folder Include="Products\NewFolder\" />
+    <Folder Include="SiteEntities\" />
+    <Folder Include="Roles\" />
+    <Folder Include="Sellers\" />
+    <Folder Include="Users\AddAddress\" />
+    <Folder Include="Users\EditAddress\" />
+    <Folder Include="Users\ChargeWallet\" />
+    <Folder Include="Users\Create\" />
+    <Folder Include="Users\Edit\" />
+    <Folder Include="Users\Register\" />
+    <Folder Include="Users\RemoveAddress\" />
+  </ItemGroup>
+
+</Project>
