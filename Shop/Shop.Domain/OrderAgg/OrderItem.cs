@@ -5,20 +5,32 @@ namespace Shop.Domain.OrderAgg;
 
 public class OrderItem:BaseEntity
 {
-    public OrderItem(long orderId, long inventoryItem, int count, int price)
+    public OrderItem( long inventoryId, int count, int price)
     {
-        OrderId = orderId;
-        InventoryItem = inventoryItem;
+        InventoryId = inventoryId;
         Count = count;
         Price = price;
     }
 
     public long OrderId { get; internal set; }
-    public long InventoryItem { get; set; }
+    public long InventoryId { get; set; }
     public int Count { get; private set; }
     public int Price { get; private set; }
     public int TotalPrice => Count * Price;
+    public void IncreaseCount(int count)
+    {
+        Count += count;
+    }
 
+    public void DecreaseCount(int count)
+    {
+        if (Count == 1)
+            return;
+        if (Count - count <=0)
+            return;
+
+        Count -= count;
+    }
     public void ChangeCount(int lastCount)
     {
         ChangeGuard(lastCount);
