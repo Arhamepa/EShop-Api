@@ -13,12 +13,12 @@
     <Folder Include="Comments\Create\" />
     <Folder Include="Comments\Edit\" />
     <Folder Include="Comments\ChangeStatus\" />
+    <Folder Include="_Utilities\" />
     <Folder Include="Orders\AddItem\" />
     <Folder Include="Orders\IncreaseOrderItemCount\" />
     <Folder Include="Orders\DecreaseOrderItemCount\" />
     <Folder Include="Orders\CheckoutOrderCommand\" />
     <Folder Include="Orders\RemoveItem\" />
-    <Folder Include="Products\Create\" />
     <Folder Include="Products\Edit\" />
     <Folder Include="Products\AddImage\" />
     <Folder Include="Products\RemoveImage\" />
