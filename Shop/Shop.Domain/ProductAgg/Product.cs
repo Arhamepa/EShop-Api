@@ -30,7 +30,8 @@ public class Product:AggregateRoot
         SeoData seoData,
         IProductDomainService domainService)
     {
-        Guard(title, description, imageName, slug, domainService);
+        NullOrEmptyDomainDataException.CheckString(imageName, nameof(imageName));
+        Guard(title, description, slug, domainService);
         Title = title;
         Description = description;
         Slug = slug.ToString();
@@ -44,47 +45,51 @@ public class Product:AggregateRoot
         string title,
         string description,
         string slug,
-        string imageName,
         long categoryId,
         long subCategoryId,
         long secondarySubCategoryId,
         SeoData seoData,
         IProductDomainService domainService)
     {
-        Guard(title,description,imageName,slug,domainService);
+    
+        Guard(title,description,slug,domainService);
         Title = title;
         Description = description;
         Slug = slug.ToSlug();
-        ImageName = imageName;
         CategoryId = categoryId;
         SubCategoryId = subCategoryId;
         SecondarySubCategoryId = secondarySubCategoryId;
         SeoData = seoData;
     }
-
+    
     public void AddImage(ProductImage image)
     {
         Images.Add(image);
     }
 
-    public void RemoveImage(long id)
+    public string RemoveImage(long id)
     {
         var existImage = Images.FirstOrDefault(i => i.Id == id);
         if (existImage == null)
-            return;
+            throw new NullOrEmptyDomainDataException("عکس یافت نشد!");
         Images.Remove(existImage);
+        return existImage.ImageName;
     }
 
+    public void SetProductImage(string imageName)
+    {
+        NullOrEmptyDomainDataException.CheckString(imageName, nameof(imageName));
+         ImageName=imageName;
+    }
     public void SetSpecification(List<ProductSpecification> specifications)
     {
         Specifications = specifications;
     }
 
-    public void Guard(string title, string description, string imageName,string slug, IProductDomainService domainService)
+    public void Guard(string title, string description,string slug, IProductDomainService domainService)
     {
         NullOrEmptyDomainDataException.CheckString(title , nameof(title));
         NullOrEmptyDomainDataException.CheckString(description, nameof(description));
-        NullOrEmptyDomainDataException.CheckString(imageName, nameof(imageName));
         NullOrEmptyDomainDataException.CheckString(slug, nameof(slug));
         
         if(slug!=Slug)

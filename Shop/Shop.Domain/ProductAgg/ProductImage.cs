@@ -4,13 +4,13 @@ namespace Shop.Domain.ProductAgg;
 
 public class ProductImage : BaseEntity
 {
-    public ProductImage(int sequence, string imageName)
+    public ProductImage(int imagePriority, string imageName)
     {
-        Sequence = sequence;
+        ImagePriority = imagePriority;
         ImageName = imageName;
     }
 
     public long ProductId { get; internal set; }
     public string ImageName { get; private set; }
-    public int Sequence { get; private set; }
+    public int ImagePriority { get; private set; }
 }
