@@ -67,12 +67,13 @@ public class Product:AggregateRoot
         Images.Add(image);
     }
 
-    public void RemoveImage(long id)
+    public string RemoveImage(long id)
     {
         var existImage = Images.FirstOrDefault(i => i.Id == id);
         if (existImage == null)
-            return;
+            throw new NullOrEmptyDomainDataException("عکس یافت نشد!");
         Images.Remove(existImage);
+        return existImage.ImageName;
     }
 
     public void SetProductImage(string imageName)
