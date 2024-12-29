@@ -5,7 +5,7 @@ namespace Shop.Domain.SellerAgg;
 
 public class SellerInventory:BaseEntity
 {
-    public SellerInventory(long productId, int count, int price)
+    public SellerInventory(long productId, int count, int price,int? discountPercentage=null)
     {
         if (price < 1 || count < 0)
             throw new InvalidDomainDataException();
@@ -18,6 +18,15 @@ public class SellerInventory:BaseEntity
     public long ProductId { get; internal set; }
     public int Count { get;private set; }
     public int Price { get;private set; }
+    public int? DisCountPercentage { get; private set; }
 
+    public void Edit(int count, int price, int? disCountPercentage)
+    {
+        if (price < 1 || count < 0)
+            throw new InvalidDomainDataException();
+        Count = count;
+        Price= price;
+        DisCountPercentage = disCountPercentage;
+    }
 
 }
