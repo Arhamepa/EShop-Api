@@ -19,6 +19,7 @@
     <Folder Include="ProductAgg\Repository\" />
     <Folder Include="ProductAgg\Service\" />
     <Folder Include="RoleAgg\Repository\" />
+    <Folder Include="SellerAgg\Service\" />
     <Folder Include="SellerAgg\Repository\" />
     <Folder Include="UserAgg\Enums\" />
     <Folder Include="UserAgg\Repository\" />

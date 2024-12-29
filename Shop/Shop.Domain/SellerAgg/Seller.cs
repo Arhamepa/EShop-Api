@@ -1,5 +1,6 @@
 ﻿using Common.Domain;
 using Common.Domain.Exceptions;
+using Shop.Domain.SellerAgg.Service;
 
 namespace Shop.Domain.SellerAgg;
 
@@ -9,13 +10,16 @@ public class Seller:AggregateRoot
     {
 
     }
-    public Seller(long userId, string shopName, string nationalCode, List<SellerInventory> inventories)
+    public Seller(long userId, string shopName, string nationalCode,ISellerDomainService domainService)
     {
         Guard(shopName , nationalCode);
         UserId = userId;
         ShopName = shopName;
         NationalCode = nationalCode;
         Inventories = new List<SellerInventory>();
+
+        if (domainService.IsInfoExist(this) == false)
+            throw new InvalidDomainDataException("اطلاعات نا معتبر است");
     }
 
     public long UserId { get; private set; }
@@ -30,11 +34,14 @@ public class Seller:AggregateRoot
         Status = status;
         LatestUpDateTime=DateTime.Now;
     }
-    public void Edit(string shopName, string nationalCode)
+    public void Edit(string shopName, string nationalCode, ISellerDomainService domainService)
     {
         Guard(shopName,nationalCode);
         ShopName = shopName;
         NationalCode = nationalCode;
+        if(nationalCode != NationalCode)
+            if (domainService.NationalCodeIsExist(nationalCode))
+                throw new NationalCodeIsDuplicateException();
     }
     public void Guard(string shopName, string nationalCode)
     {
