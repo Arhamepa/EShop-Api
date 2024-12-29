@@ -34,14 +34,15 @@ public class Seller:AggregateRoot
         Status = status;
         LatestUpDateTime=DateTime.Now;
     }
-    public void Edit(string shopName, string nationalCode, ISellerDomainService domainService)
+    public void Edit(string shopName, string nationalCode,SellerStatus status, ISellerDomainService domainService)
     {
         Guard(shopName,nationalCode);
-        ShopName = shopName;
-        NationalCode = nationalCode;
         if(nationalCode != NationalCode)
             if (domainService.NationalCodeIsExist(nationalCode))
                 throw new NationalCodeIsDuplicateException();
+        ShopName = shopName;
+        NationalCode = nationalCode;
+        Status = status;
     }
     public void Guard(string shopName, string nationalCode)
     {
@@ -56,20 +57,13 @@ public class Seller:AggregateRoot
             throw new InvalidDomainDataException("این محصول وجود دارد!");
         Inventories.Add(newInventory);
     }
-    public void EditInventory(SellerInventory inventory)
+    public void EditInventory(long inventoryId, int count , int price , int?discountPercentage)
     {
-        var currentInventory = Inventories.FirstOrDefault(i => i.Id == inventory.Id);
+        var currentInventory = Inventories.FirstOrDefault(i => i.Id == inventoryId);
         if (currentInventory == null)
-            return;
-        Inventories.Remove(currentInventory); 
-        Inventories.Add(inventory);
+            throw new NullOrEmptyDomainDataException("محصول یافت نشد!");
+      
+        currentInventory.Edit(count,price,discountPercentage);
     }
-    public void DeleteInventory(SellerInventory inventory)
-    {
-        var currentInventory = Inventories.FirstOrDefault(i => i.Id == inventory.Id);
-        if (currentInventory == null)
-            throw new InvalidDomainDataException("محصول یافت نشد.");
-        Inventories.Remove(currentInventory);
-       
-    }
+   
 }
