@@ -14,7 +14,7 @@ public class User:AggregateRoot
         string password,
         string email,
         Gender gender,
-        IDomainUserService domainUserService)
+        IUserDomainService domainUserService)
     {
         Guard(phoneNumber, email, domainUserService);
         Name = name;
@@ -23,6 +23,7 @@ public class User:AggregateRoot
         Password = password;
         Email = email;
         Gender = gender;
+        AvatarName = "avatar.png";
     }
 
     public string Name { get; private set; }
@@ -30,12 +31,13 @@ public class User:AggregateRoot
     public string PhoneNumber { get; private set; }
     public string Password { get; private set; }
     public string Email { get; private set; }
+    public string AvatarName { get; set; }
     public Gender Gender { get; set; }
     public List<UserAddress> Addresses { get; private set; }
     public List<UserRole> Roles { get; private set; }
     public List<Wallet> Wallets { get; private set; }
 
-    public static User RegisterUser(string email , string phoneNumber , string password, IDomainUserService domainUserService)
+    public static User RegisterUser(string email , string phoneNumber , string password, IUserDomainService domainUserService)
     {
         return new User("", "", phoneNumber, password, email, Gender.None, domainUserService);
     }
@@ -46,7 +48,7 @@ public class User:AggregateRoot
         string phoneNumber,
         string email,
         Gender gender,
-        IDomainUserService domainUserService)
+        IUserDomainService domainUserService)
     {
         Guard(phoneNumber, email, domainUserService);
         Name = name;
@@ -55,7 +57,14 @@ public class User:AggregateRoot
         Email = email;
         Gender = gender;
     }
-    
+
+    public void SetAvatar(string imageName)
+    {
+        if (string.IsNullOrWhiteSpace(imageName))
+            imageName = "avatar.png";
+
+        AvatarName = imageName;
+    }
     public void RemoveAddress(long addressId)
     {
         var existAddress = Addresses.FirstOrDefault(adr => adr.Id == addressId);
@@ -92,7 +101,7 @@ public class User:AggregateRoot
         Roles.AddRange(userRoles);
     }
 
-    public void Guard(string phoneNumber, string email,IDomainUserService domainUserService)
+    public void Guard(string phoneNumber, string email,IUserDomainService domainUserService)
     {
         NullOrEmptyDomainDataException.CheckString(phoneNumber,nameof(phoneNumber));
         if (phoneNumber.Length != 11)
