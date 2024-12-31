@@ -7,4 +7,7 @@ public class Directories
 
     public const string BannerImagePath = "wwwroot/images/products/banners";
     public const string SliderImagesPath = "wwwroot/images/products/sliderImages";
+
+    public const string UserAvatarsImagesPath = "wwwroot/images/users/avatars";
+    
 }
