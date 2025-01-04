@@ -78,14 +78,15 @@ public class User:AggregateRoot
         userAddress.UserId = Id;
         Addresses.Add(userAddress);
     }
-    public void EditAddress(UserAddress userAddress)
+    public void EditAddress(UserAddress userAddress , long addressId)
     {
-       var oldAddress =  Addresses.FirstOrDefault(adr => adr.Id == userAddress.Id);
+       var oldAddress =  Addresses.FirstOrDefault(adr => adr.Id == addressId);
        if (oldAddress ==null)
             throw new NullOrEmptyDomainDataException("آدرس پیدا نشد!");
 
-       Addresses.Remove(oldAddress);
-       Addresses.Add(userAddress);
+       oldAddress.Edit(userAddress.Province, userAddress.City, userAddress.PostalAddress, userAddress.PostalCode,
+            userAddress.PhoneNumber, userAddress.Name, userAddress.Family, userAddress.NationalCode);
+       
     }
 
     public void ChargeWallet(Wallet wallet)

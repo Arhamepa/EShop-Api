@@ -1,17 +1,18 @@
 ﻿using Common.Domain;
 using Common.Domain.Exceptions;
+using Common.Domain.ValueObjects;
 
 namespace Shop.Domain.UserAgg;
 
 public class UserAddress : BaseEntity
 {
     public UserAddress(
-        long userId,
+       
         string province,
         string city,
         string postalAddress,
         string postalCode,
-        string phoneNumber,
+        PhoneNumber phoneNumber,
         string name,
         string family,
         string nationalCode)
@@ -25,7 +26,6 @@ public class UserAddress : BaseEntity
         name,
         family,
         nationalCode);
-        UserId = userId;
         this.Province = province;
         City = city;
         PostalAddress = postalAddress;
@@ -42,7 +42,7 @@ public class UserAddress : BaseEntity
     public string City { get; private set; }
     public string PostalAddress { get; private set; }
     public string PostalCode { get; private set; }
-    public string PhoneNumber { get; private set; }
+    public PhoneNumber PhoneNumber { get; private set; }
     public string Name { get; private set; }
     public string Family { get; private set; }
     public string NationalCode { get; private set; }
@@ -54,13 +54,11 @@ public class UserAddress : BaseEntity
     }
 
     public void Edit(
-       
-        
         string province,
         string city,
         string postalAddress,
         string postalCode,
-        string phoneNumber,
+        PhoneNumber phoneNumber,
         string name,
         string family,
         string nationalCode)
@@ -74,35 +72,38 @@ public class UserAddress : BaseEntity
             name,
             family,
             nationalCode);
-        this.Province = province;
-        City = city;
-        PostalAddress = postalAddress;
-        PostalCode = postalCode;
-        PhoneNumber = phoneNumber;
-        Name = name;
-        Family = family;
-        NationalCode = nationalCode;
+            this.Province = province;
+            City = city;
+            PostalAddress = postalAddress;
+            PostalCode = postalCode;
+            PhoneNumber = phoneNumber;
+            Name = name;
+            Family = family;
+            NationalCode = nationalCode;
     }   
+
     public void Guard(
             string province,
             string city,
             string postalAddress,
             string postalCode,
-            string phoneNumber,
+            PhoneNumber phoneNumber,
             string name,
             string family,
             string nationalCode)
         
     {
+        if (phoneNumber == null)
+        {
+            throw new NullOrEmptyDomainDataException();
+        }
         NullOrEmptyDomainDataException.CheckString(province, nameof(province));
         NullOrEmptyDomainDataException.CheckString(city, nameof(city));
         NullOrEmptyDomainDataException.CheckString(postalAddress, nameof(postalAddress));
         NullOrEmptyDomainDataException.CheckString(postalCode, nameof(postalCode));
-        NullOrEmptyDomainDataException.CheckString(phoneNumber, nameof(phoneNumber));
         NullOrEmptyDomainDataException.CheckString(name, nameof(name));
         NullOrEmptyDomainDataException.CheckString(family, nameof(family));
         NullOrEmptyDomainDataException.CheckString(nationalCode, nameof(nationalCode));
-
         if (IranianNationalCodeValidation.IsValid(nationalCode) == false)
             throw new InvalidDomainDataException("کد ملی معتبر نیست!");
     }

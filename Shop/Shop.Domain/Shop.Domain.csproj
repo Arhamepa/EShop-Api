@@ -22,6 +22,7 @@
     <Folder Include="SellerAgg\Service\" />
     <Folder Include="SellerAgg\Repository\" />
     <Folder Include="UserAgg\Enums\" />
+    <Folder Include="UserAgg\ValueObjects\" />
     <Folder Include="UserAgg\Repository\" />
     <Folder Include="UserAgg\Services\" />
   </ItemGroup>
