@@ -1,5 +1,6 @@
 ﻿using Common.Domain;
 using Common.Domain.Exceptions;
+using Common.Domain.ValueObjects;
 using Shop.Domain.UserAgg.Enums;
 using Shop.Domain.UserAgg.Services;
 
@@ -37,11 +38,11 @@ public class User:AggregateRoot
     public List<UserRole> Roles { get; private set; }
     public List<Wallet> Wallets { get; private set; }
 
-    public static User RegisterUser(string email , string phoneNumber , string password, IUserDomainService domainUserService)
+    public static User RegisterUser( string phoneNumber , string password, IUserDomainService domainUserService)
     {
-        return new User("", "", phoneNumber, password, email, Gender.None, domainUserService);
+        return new User("", "", phoneNumber,null, password, Gender.None, domainUserService);
     }
-   
+
     public void Edit(
         string name,
         string family,
@@ -78,14 +79,15 @@ public class User:AggregateRoot
         userAddress.UserId = Id;
         Addresses.Add(userAddress);
     }
-    public void EditAddress(UserAddress userAddress)
+    public void EditAddress(UserAddress userAddress , long addressId)
     {
-       var oldAddress =  Addresses.FirstOrDefault(adr => adr.Id == userAddress.Id);
+       var oldAddress =  Addresses.FirstOrDefault(adr => adr.Id == addressId);
        if (oldAddress ==null)
             throw new NullOrEmptyDomainDataException("آدرس پیدا نشد!");
 
-       Addresses.Remove(oldAddress);
-       Addresses.Add(userAddress);
+       oldAddress.Edit(userAddress.Province, userAddress.City, userAddress.PostalAddress, userAddress.PostalCode,
+            userAddress.PhoneNumber, userAddress.Name, userAddress.Family, userAddress.NationalCode);
+       
     }
 
     public void ChargeWallet(Wallet wallet)
