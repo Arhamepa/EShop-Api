@@ -7,13 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="_Utilities\" />
     <Folder Include="Persistent.Ef\Configurations\CategoryAgg\" />
     <Folder Include="Persistent.Ef\Configurations\CommentAgg\" />
-    <Folder Include="Persistent.Ef\Configurations\UserAgg\" />
-    <Folder Include="Persistent.Ef\Configurations\SiteEntities\" />
-    <Folder Include="Persistent.Ef\Configurations\SellerAgg\" />
-    <Folder Include="Persistent.Ef\Configurations\RoleAgg\" />
+    <Folder Include="Persistent.Ef\Configurations\NewFolder\" />
+    <Folder Include="Persistent.Ef\Configurations\ProductAgg\" />
     <Folder Include="Persistent.Ef\Configurations\OrderAgg\" />
   </ItemGroup>
 
