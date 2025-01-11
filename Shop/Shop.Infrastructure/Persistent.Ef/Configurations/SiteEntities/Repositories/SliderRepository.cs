@@ -1,0 +1,12 @@
+﻿using Shop.Domain.SiteEntities;
+using Shop.Domain.SiteEntities.Repository;
+using Shop.Infrastructure._Utilities;
+
+namespace Shop.Infrastructure.Persistent.Ef.Configurations.SiteEntities.Repositories;
+
+internal class SliderRepository:BaseRepository<Slider> , ISliderRepository
+{
+    public SliderRepository(ShopContext context) : base(context)
+    {
+    }
+}

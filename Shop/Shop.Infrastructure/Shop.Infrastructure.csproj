@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -7,17 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Persistent.Dapper\" />
     <Folder Include="_Utilities\" />
     <Folder Include="Persistent.Ef\Configurations\CategoryAgg\" />
     <Folder Include="Persistent.Ef\Configurations\CommentAgg\" />
     <Folder Include="Persistent.Ef\Configurations\UserAgg\" />
-    <Folder Include="Persistent.Ef\Configurations\SiteEntities\" />
     <Folder Include="Persistent.Ef\Configurations\SellerAgg\" />
     <Folder Include="Persistent.Ef\Configurations\RoleAgg\" />
     <Folder Include="Persistent.Ef\Configurations\OrderAgg\" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.1.35" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.10">
       <PrivateAssets>all</PrivateAssets>
@@ -28,6 +29,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.SqlServer.Server" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>
