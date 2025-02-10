@@ -11,7 +11,8 @@
     <Folder Include="Categories\GetById\" />
     <Folder Include="Categories\GetByParentId\" />
     <Folder Include="Categories\GetList\" />
-    <Folder Include="Comments\" />
+    <Folder Include="Comments\GetById\" />
+    <Folder Include="Comments\GetByFilter\" />
     <Folder Include="Users\" />
     <Folder Include="SiteEntities\" />
     <Folder Include="Sellers\" />
