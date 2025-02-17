@@ -27,7 +27,10 @@ public class BaseFilterParams
     public int Take { get; set; } = 10;
 }
 
-public class BaseFilter<TData, TParam> : BaseFilter
+public class BaseFilter<TData, TParam> : BaseFilter 
+    where TParam : BaseFilterParams
+    where TData : BaseDto
+
 {
     public List<TData> Data { get; set; }
     public TParam FilterParam { get; set; }

@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Query;
 using Common.Query.Filter;
 using Shop.Domain.CommentAgg;
 
 namespace Shop.Query.Comments.DTOs;
 
-public class CommentDto
+public class CommentDto:BaseDto
 {
     public long Id { get; set; }
     public long UserId { get;  set; }
