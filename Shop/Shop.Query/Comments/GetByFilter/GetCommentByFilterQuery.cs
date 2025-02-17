@@ -47,7 +47,7 @@ public class GetCommentByFilterQueryHandler : IQueryHandler<GetCommentByFilterQu
         var skip = (@param.PageId - 1) * @param.Take;
         var model = new CommentFilterResult()
         {
-            Data =await result.Skip(skip).Take(@param.Take).Select(comment => comment.Map()).ToListAsync(cancellationToken),
+            Data =await result.Skip(skip).Take(@param.Take).Select(comment => comment.MapFilteredComment()).ToListAsync(cancellationToken),
             FilterParam = @param
             
         };
